@@ -1,0 +1,19 @@
+package com.bsl.thread.test2.session9;
+
+public class MyService {
+
+	public MyOneList addServiceMethod(MyOneList list,String data) {
+		try {
+			//同步list实例，避免读写不一致
+			synchronized (list) {
+				if (list.getSize()<1) {
+					Thread.sleep(2000);
+					list.add(data);
+				}
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+}
